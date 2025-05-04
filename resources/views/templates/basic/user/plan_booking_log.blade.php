@@ -39,11 +39,25 @@
                                             {{ $log->status == 1 ? 'btn-success' : 'btn-outline-success' }}">
                                             @lang('Completed')
                                         </button>
+                                        {{-- <span>{{ showDateTime($log->pick_time) }}</span>
                                         <button type="button" name="status" value="2"
                                             class="btn btn-sm status-btn 
                                             {{ $log->status == 2 ? 'btn-danger' : 'btn-outline-danger' }}">
                                             @lang('Canceled')
-                                        </button>
+                                        </button> --}}
+
+                                        @if ($log->pick_time <= now()->addHours(12))
+                                            <button type="button" name="status" value="2"
+                                                class="btn btn-sm status-btn d-none {{ $log->status == 2 ? 'btn-danger' : 'btn-outline-danger' }}">
+                                                @lang('Canceled')
+                                            </button>
+                                        @else
+                                            <button type="button" name="status" value="2"
+                                                class="btn btn-sm status-btn 
+                                                {{ $log->status == 2 ? 'btn-danger' : 'btn-outline-danger' }}">
+                                                @lang('Canceled')
+                                            </button>
+                                        @endif
                                     </div>
                                 </form>
                             </td>
@@ -91,7 +105,7 @@
                                     .removeClass('btn-warning btn-success btn-danger')
                                     .addClass(
                                         'btn-outline-warning btn-outline-success btn-outline-danger'
-                                        );
+                                    );
 
                                 if ($(this).val() == status) {
                                     $(this).removeClass(

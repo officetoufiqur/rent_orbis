@@ -146,49 +146,49 @@ class ManageVehicleController extends Controller
     public function bookingLog()
     {
         $pageTitle = 'Vehicle Booking Log';
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function upcomingBookingLog()
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->upcoming()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->upcoming()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'Vehicle Upcoming Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function runningBookingLog()
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->running()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->running()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'Vehicle Running Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function completedBookingLog()
     {
         $pageTitle = 'Vehicle Completed Booking Log';
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->completed()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->completed()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
 
     public function userBookingLog($id)
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'User Vehicle Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function userUpcomingBookingLog($id)
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->upcoming()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->upcoming()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'User Vehicle Upcoming Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function userRunningBookingLog($id)
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->running()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->running()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'User Vehicle Running Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }
     public function userCompletedBookingLog($id)
     {
-        $bookingLogs = RentLog::active()->searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->completed()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::searchable(['vehicle:name','user:username', 'trx', 'price'])->where('user_id', $id)->completed()->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         $pageTitle = 'User Vehicle Completed Booking Log';
         return view('admin.vehicle.booking_log', compact('pageTitle','bookingLogs'));
     }

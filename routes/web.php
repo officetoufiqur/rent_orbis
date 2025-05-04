@@ -57,3 +57,4 @@ Route::controller('SiteController')->group(function () {
 
 //update booking log status
 Route::post('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.updateStatus');
+Route::post('/vehicle-booking-log/{id}', [UserController::class, 'vehicleBookingLogStatus'])->name('vehicleBookingLogStatus');

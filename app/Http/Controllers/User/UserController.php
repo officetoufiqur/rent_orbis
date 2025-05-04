@@ -259,7 +259,7 @@ class UserController extends Controller {
 
     public function vehicleBookingLog() {
         $pageTitle   = 'Vehicle Booking Log';
-        $bookingLogs = RentLog::active()->where('user_id', auth()->id())->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = RentLog::where('user_id', auth()->id())->with(['vehicle', 'user', 'pickUpLocation', 'dropUpLocation'])->latest()->paginate(getPaginate());
         return view('Template::user.vehicle_booking_log', compact('pageTitle', 'bookingLogs'));
     }
 
@@ -276,6 +276,19 @@ class UserController extends Controller {
         ]);
     
         $log = PlanLog::findOrFail($id);
+        $log->status = $request->status;
+        $log->save();
+    
+        return response()->json(['success' => true]);
+    }
+
+    public function vehicleBookingLogStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:0,1,2',
+        ]);
+    
+        $log = RentLog::findOrFail($id);
         $log->status = $request->status;
         $log->save();
     
