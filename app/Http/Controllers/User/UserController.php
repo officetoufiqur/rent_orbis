@@ -265,7 +265,20 @@ class UserController extends Controller {
 
     public function planBookingLog() {
         $pageTitle   = 'Plan Booking Log';
-        $bookingLogs = PlanLog::active()->where('user_id', auth()->id())->with(['plan', 'user', 'pickUpLocation'])->latest()->paginate(getPaginate());
+        $bookingLogs = PlanLog::where('user_id', auth()->id())->with(['plan', 'user', 'pickUpLocation'])->latest()->paginate(getPaginate());
         return view('Template::user.plan_booking_log', compact('pageTitle', 'bookingLogs'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:0,1,2',
+        ]);
+    
+        $log = PlanLog::findOrFail($id);
+        $log->status = $request->status;
+        $log->save();
+    
+        return response()->json(['success' => true]);
     }
 }

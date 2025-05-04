@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
 
 Route::get('/clear', function(){
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
@@ -54,3 +55,5 @@ Route::controller('SiteController')->group(function () {
     Route::get('/', 'index')->name('home');
 });
 
+//update booking log status
+Route::post('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.updateStatus');

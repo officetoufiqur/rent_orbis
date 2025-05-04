@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
 
 Route::namespace('User\Auth')->name('user.')->group(function () {
 
@@ -63,6 +64,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::get('booking/confirm/{id}/{slug}', 'vehicleBooking')->name('vehicle.booking');
                 Route::post('booking/confirm/{id}', 'bookingConfirm')->name('vehicle.booking.confirm');
                 Route::get('vehicle/booking/log', 'vehicleBookingLog')->name('vehicle.booking.log');
+                
 
                 Route::post('/rating/{vehicle_id}', 'rating')->name('rating');
 

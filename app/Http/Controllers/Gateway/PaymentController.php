@@ -149,6 +149,10 @@ class PaymentController extends Controller {
             $deposit->save();
         }
 
+        if (!isset($data->error) && !isset($data->redirect)) {
+            $this->userDataUpdate($deposit); 
+        }
+
         $pageTitle = 'Payment Confirm';
         return view("Template::$data->view", compact('data', 'pageTitle', 'deposit'));
     }
